@@ -35,12 +35,12 @@ class Purchase(models.Model):
 
     
 class Item_purchase(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
-    amount = models.IntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    total = models.DecimalField(max_digits=10, decimal_places=2)
-    total_with_taxes = models.DecimalField(max_digits=10, decimal_places=2)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True)
+    purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE, null=True)
+    amount = models.IntegerField(default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    total_with_taxes = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     create_date = models.DateField()
     last_update_date = models.DateField()
     state = models.CharField(max_length=2)
