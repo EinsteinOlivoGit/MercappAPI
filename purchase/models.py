@@ -11,4 +11,37 @@ class Market(models.Model):
 
     def __str__(self):
         return self.name
+
+class Item(models.Model):
+    name = models.CharField(max_length=80)
+    brand = models.CharField(max_length=80)
+    create_date = models.DateField()
+    last_update_date = models.DateField()
+    users = models.ManyToManyField(User)
+    state = models.CharField(max_length=2)
+
+    def __str__(self):
+        return self.name
+
+class Purchase(models.Model):
+    market = models.ForeignKey(Market, on_delete=models.CASCADE)
+    items = models.ManyToManyField(Item, through='Item_purchase')
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    total_with_taxes = models.DecimalField(max_digits=10, decimal_places=2)
+    create_date = models.DateField()
+    last_update_date = models.DateField()
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    state = models.CharField(max_length=2)
+
     
+class Item_purchase(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
+    amount = models.IntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    total_with_taxes = models.DecimalField(max_digits=10, decimal_places=2)
+    create_date = models.DateField()
+    last_update_date = models.DateField()
+    state = models.CharField(max_length=2)
+
