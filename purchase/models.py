@@ -21,7 +21,7 @@ class Item(models.Model):
     state = models.CharField(max_length=2)
 
     def __str__(self):
-        return self.name
+        return self.name + ' ' + self.brand
 
 class Purchase(models.Model):
     market = models.ForeignKey(Market, on_delete=models.CASCADE)
@@ -33,6 +33,8 @@ class Purchase(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     state = models.CharField(max_length=2)
 
+    def __str__(self):
+        return str(self.pk)
     
 class Item_purchase(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True)
@@ -44,4 +46,8 @@ class Item_purchase(models.Model):
     create_date = models.DateField()
     last_update_date = models.DateField()
     state = models.CharField(max_length=2)
+
+    def __str__(self):
+        return str(self.pk)
+    
 
