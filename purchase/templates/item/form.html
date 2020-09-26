@@ -1,0 +1,30 @@
+{% extends '../layouts/base.html' %}
+{% block header %}
+    <header class="masthead d-flex title">
+        <div class="container text-center my-auto">
+        <h1 class="mb-1">Items</h1>
+        </div>
+        <div class="overlay"></div>
+    </header>
+{% endblock header %}
+{% block content_inner %}
+<div class='text-left'>
+    <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit' class="btn btn-primary" >Save</button>
+    </form>
+</div>
+{% endblock content_inner %}
+{% block about %}
+{% endblock about %}
+{% block services %}
+{% endblock services %}
+{% block callout %}
+{% endblock callout %}
+{% block portfolio %}
+{% endblock portfolio %}
+{% block call_to_action %}
+{% endblock call_to_action %}
+{% block map %}
+{% endblock map %}
